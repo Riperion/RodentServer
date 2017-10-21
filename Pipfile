@@ -3,11 +3,17 @@ url = "https://pypi.python.org/simple"
 verify_ssl = true
 
 [packages]
-dj-database-url = "*"
+
+"dj-database-url" = "*"
 django = "*"
 gunicorn = "*"
-psycopg2 = "*"
+"psycopg2" = "*"
 whitenoise = "*"
+djangorestframework = "*"
+markdown = "*"
+"django-filter" = "*"
+coreapi = "*"
+djoser = "*"
 
 [requires]
 python_version = "3.6"
