@@ -1,5 +1,5 @@
 import csv
-import datetime
+import datetime, pytz
 from decimal import *
 from ratsightings.models import RatSighting
 
@@ -11,11 +11,12 @@ def import_data():
     with open('data/data.csv', 'r') as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='|')
         next(reader, None)
+        i = 0
         for row in reader:
             try:
                 key = int(row[0])
                 dateCreated = row[1]
-                dateCreated = datetime.datetime.strptime(dateCreated, "%m/%d/%Y %H:%M:%S %p")
+                dateCreated = datetime.datetime.strptime(dateCreated, "%m/%d/%Y %H:%M:%S %p").replace(tzinfo=pytz.timezone('America/New_York'))
                 locationType = row[7]
                 zipCode = int(row[8])
                 address = row[9]
@@ -34,5 +35,9 @@ def import_data():
             try:
                 q = RatSighting(id=key, owner_id=1, date_created=dateCreated, location_type=locationType, zip_code=zipCode, address=address, city=city, borough=borough, latitude=latitude, longitude=longitude)
                 q.save()
+
+                i+= 1
+                if i % 50 == 0:
+                    print(i)
             except:
                 pass

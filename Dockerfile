@@ -29,4 +29,4 @@ EXPOSE 8000
 VOLUME /code
 WORKDIR /code
 
-ENTRYPOINT ["/usr/local/bin/gunicorn", "--config", "/code/gunicorn.conf", "--log-config", "/code/logging.conf", "-b", ":8000", "rodent.wsgi:application"]
+ENTRYPOINT ["/usr/local/bin/gunicorn", "--config", "/code/gunicorn.conf", "-b", ":8000", "rodent.wsgi:application"]
