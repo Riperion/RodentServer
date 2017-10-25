@@ -5,13 +5,13 @@ ENV DJANGO_ENV=test
 
 # Add new user to run the whole thing as non-root
 RUN addgroup -S app
-RUN adduser -G app -h /app -D app
+RUN adduser -G app -h /code -D app
 
 # Copy Pipfile and install system-wide
 # We're installing system-wide, because we currently have problems
 # correctly using the entrypoint.sh, while activating the virtual environment
-COPY Pipfile Pipfile.lock /app/
-WORKDIR /app
+COPY Pipfile Pipfile.lock /tmp/
+WORKDIR /tmp
 
 # Install build dependencies for PostgreSQL. While we're at it, also install
 # pipenv and all python requirements. Then remove unneeded build dependencies.
@@ -24,14 +24,10 @@ RUN apk update \
     && pipenv install --dev --system --verbose \
     && apk del .build-deps
 
-# Change to user and copy code
-USER app
-COPY . /app
-
 # Let Django collect all staticfiles
-RUN python /app/manage.py collectstatic --noinput
-RUN python /app/manage.py migrate --noinput
+# RUN python /code/manage.py collectstatic --noinput
+# RUN python /code/manage.py migrate --noinput
 
 EXPOSE 8000
 
-ENTRYPOINT ["/usr/local/bin/gunicorn", "--config", "/app/gunicorn.conf", "--log-config", "/app/logging.conf", "-b", ":8000", "rodent.wsgi:application"]
+ENTRYPOINT ["/usr/local/bin/gunicorn", "--config", "/code/gunicorn.conf", "--log-config", "/code/logging.conf", "-b", ":8000", "rodent.wsgi:application"]
