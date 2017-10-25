@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User, Group
-from ratsightings.models import RatSighting
 from rest_framework import serializers
+
+from ratsightings.models import RatSighting
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):

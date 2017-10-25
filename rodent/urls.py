@@ -1,9 +1,10 @@
 from django.conf.urls import include, url
-from rest_framework import routers
 from django.contrib import admin
+from rest_framework import routers
+from rest_framework.schemas import get_schema_view
+
 from ratsightings.views import RatSightingViewSet
 from .views import UserViewSet, GroupViewSet
-from rest_framework.schemas import get_schema_view
 
 admin.autodiscover()
 
