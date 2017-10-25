@@ -3,10 +3,6 @@ ENV PYTHONUNBUFFERED 1
 
 ENV DJANGO_ENV=test
 
-# Add new user to run the whole thing as non-root
-RUN addgroup -S app
-RUN adduser -G app -h /code -D app
-
 # Copy Pipfile and install system-wide
 # We're installing system-wide, because we currently have problems
 # correctly using the entrypoint.sh, while activating the virtual environment
@@ -29,5 +25,8 @@ RUN apk update \
 # RUN python /code/manage.py migrate --noinput
 
 EXPOSE 8000
+
+VOLUME /code
+WORKDIR /code
 
 ENTRYPOINT ["/usr/local/bin/gunicorn", "--config", "/code/gunicorn.conf", "--log-config", "/code/logging.conf", "-b", ":8000", "rodent.wsgi:application"]
