@@ -17,4 +17,4 @@ class RatSighting(models.Model):
         return "%s, %s, %s %d" % (self.address, self.borough, self.city, self.zip_code)
 
     class Meta:
-        ordering = ('date_created',)
+        ordering = ('-date_created',)
