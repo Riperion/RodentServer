@@ -6,7 +6,7 @@ from .serializers import RatSightingSerializer
 from rest_framework import viewsets
 
 class RatSightingDateRangeFilter(FilterSet):
-    date = DateFromToRangeFilter()
+    date_created = DateFromToRangeFilter()
 
     class Meta:
         model = RatSighting
