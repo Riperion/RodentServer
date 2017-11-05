@@ -32,7 +32,7 @@ class RatSightingViewSet(viewsets.ModelViewSet):
 class RatSightingStatsViewSet(viewsets.ViewSet):
     def list(self, request, format=None):
         # Get the dates sent by the user
-        serializer = RatSightingStatsQuerySerializer(data=request.QUERY_PARAMS)
+        serializer = RatSightingStatsQuerySerializer(data=request.query_params)
         if not serializer.is_valid():
             return Response(
                 data=serializer.errors,
