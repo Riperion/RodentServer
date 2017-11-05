@@ -1,10 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import date
 
 # Create your models here.
 class RatSighting(models.Model):
     owner = models.ForeignKey(User, related_name='ratsightings', on_delete=models.CASCADE, null=False)
-    date_created = models.DateTimeField(auto_now_add=True, null=False)
+    date_created = models.DateTimeField(default=date.today, null=False)
     location_type = models.CharField(max_length=100, null=False)
     zip_code = models.IntegerField(null=False)
     address = models.TextField(max_length=500, null=False)
