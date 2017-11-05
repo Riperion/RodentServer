@@ -1,5 +1,6 @@
 # Create your views here.
 from django.db.models.functions import TruncMonth
+from django.db.models import Count
 from django_filters.rest_framework import FilterSet, DateFromToRangeFilter
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -40,7 +41,7 @@ class RatSightingStatsViewSet(viewsets.ViewSet):
         #         status=status.HTTP_400_BAD_REQUEST
         #     )
         # data = serializer.data
-        # 
+        #
         # from_date = datetime.date(year=data["from_year"], month=data["from_month"], day=1)
         # to_date = datetime.date(year=data["to_year"], month=data["to_month"], day=1)
         #
