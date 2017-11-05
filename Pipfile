@@ -6,15 +6,12 @@ verify_ssl = true
 
 django = "*"
 gunicorn = "*"
-"psycopg2" = "*"
 whitenoise = "*"
 djangorestframework = "*"
 markdown = "*"
 "django-filter" = "*"
-coreapi = "*"
 djoser = "*"
 "json-logging-py" = "*"
-"python-dateutil" = "*"
 
 [requires]
 python_version = "3.6"
