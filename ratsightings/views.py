@@ -68,5 +68,5 @@ class RatSightingStatsViewSet(viewsets.ViewSet):
         #     query = RatSighting.objects.filter(date_created__gte=range_from, date_created__lt=range_to)
         #     results[range_from.strftime("%Y-%m")] = query.count()
 
-        results = RatSighting.objects.annotate(month=TruncMonth('date_created')).values('month').annotate(count=Count('id')).values('month', 'count')
+        results = RatSighting.objects.annotate(month=TruncMonth('date_created')).values('month').annotate(count=Count('id')).values('month', 'count').order_by()
         return Response(results)
