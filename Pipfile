@@ -4,16 +4,17 @@ verify_ssl = true
 
 [packages]
 
-Django = "*"
+django = "*"
 gunicorn = "*"
 "psycopg2" = "*"
 whitenoise = "*"
 djangorestframework = "*"
-Markdown = "*"
+markdown = "*"
 "django-filter" = "*"
 coreapi = "*"
 djoser = "*"
 "json-logging-py" = "*"
+"python-dateutil" = "*"
 
 [requires]
 python_version = "3.6"
