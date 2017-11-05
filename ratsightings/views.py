@@ -29,8 +29,8 @@ class RatSightingViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
-class RatSightingStatsView(APIView):
-    def get(self, request, format=None):
+class RatSightingStatsViewSet(viewsets.ViewSet):
+    def list(self, request, format=None):
         # Get the dates sent by the user
         serializer = RatSightingStatsQuerySerializer(data=request.QUERY_PARAMS)
         if not serializer.is_valid():
