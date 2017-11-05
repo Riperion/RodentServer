@@ -38,7 +38,7 @@ class RatSightingStatsViewSet(viewsets.ViewSet):
                 data=serializer.errors,
                 status=status.HTTP_400_BAD_REQUEST
             )
-        data = serializer.object
+        data = serializer.data
 
         from_date = datetime.date(year=data.from_year, month=data.from_month, day=1)
         to_date = datetime.date(year=data.to_year, month=data.to_month, day=1)
