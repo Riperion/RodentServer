@@ -12,7 +12,7 @@ router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'groups', GroupViewSet)
 router.register(r'ratsightings', RatSightingViewSet)
-router.register(r'stats', RatSightingStatsView)
+router.register(r'stats', RatSightingStatsView, base_name="Stats")
 
 schema_view = get_schema_view(title='Rodent API')
 
