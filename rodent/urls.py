@@ -3,7 +3,7 @@ from django.contrib import admin
 from rest_framework import routers
 from rest_framework.schemas import get_schema_view
 
-from ratsightings.views import RatSightingViewSet
+from ratsightings.views import RatSightingViewSet, RatSightingStatsView
 from .views import UserViewSet, GroupViewSet
 
 admin.autodiscover()
@@ -12,6 +12,7 @@ router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'groups', GroupViewSet)
 router.register(r'ratsightings', RatSightingViewSet)
+router.register(r'stats', RatSightingStatsView)
 
 schema_view = get_schema_view(title='Rodent API')
 
