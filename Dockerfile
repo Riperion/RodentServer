@@ -6,7 +6,7 @@ ENV DJANGO_ENV=test
 # Copy Pipfile and install system-wide
 # We're installing system-wide, because we currently have problems
 # correctly using the entrypoint.sh, while activating the virtual environment
-COPY Pipfile Pipfile.lock /tmp/
+COPY requirements.txt /tmp/
 WORKDIR /tmp
 
 # Install build dependencies for PostgreSQL. While we're at it, also install
