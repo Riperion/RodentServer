@@ -16,7 +16,7 @@ RUN apk update \
        gcc \
        musl-dev \
     && apk add --no-cache postgresql postgresql-dev \
-    && pip install -r requirements.txt
+    && pip install -r requirements.txt \
     && apk del .build-deps
 
 # Let Django collect all staticfiles
