@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block header %}Rat Sighting Details{% endblock %}
+
+{% block content %}
+    <h3 class="text-center">Rat Sighting Details</h3>
+
+    <div class="row">
+        <div id="map" class="col-sm-12" style="height: 400px;"></div>
+    </div>
+
+    <hr>
+
+    <div class="row" style="margin-top: 2em;">
+        <p><strong>Address:</strong> {{ ratsighting.address }}</p>
+        <p><strong>Borough:</strong> {{ ratsighting.borough }}</p>
+        <p><strong>City:</strong> {{ ratsighting.city }}</p>
+        <p><strong>ZIP Code:</strong> {{ ratsighting.zip_code }}</p>
+        <p><strong>Location Type:</strong> {{ ratsighting.location_type }}</p>
+        <p><strong>Date reported:</strong> {{ ratsighting.date_created }}</p>
+        <p><strong>Reported by:</strong> {{ ratsighting.owner }}</p>
+    </div>
+
+    <script>
+      function initMap() {
+        var location = {lat: {{ ratsighting.latitude }}, lng: {{ ratsighting.longitude }}};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: location
+        });
+        var marker = new google.maps.Marker({
+          position: location,
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_N-nqWenyCbi0Zfw4HrvKfrHOlld_WV0&callback=initMap">
+    </script>
+{% endblock %}

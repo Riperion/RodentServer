@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block header %}Rat Sighting List{% endblock %}
+
+{% block content %}
+    <h3 class="text-center">Rat Sighting List: Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</h3>
+
+    <div class="row" style="margin-top: 2em;">
+        <table class="table table-striped table-bordered">
+            <thead>
+            <td>Address</td>
+            <td>Borough</td>
+            <td>City</td>
+            <td>ZIP Code</td>
+            <td>Reported By</td>
+            <td>Date</td>
+            </thead>
+            <tbody>
+            {% for ratsighting in object_list %}
+                <tr>
+                    <td><a href="{% url 'ratsighting-detail' ratsighting.id %}">{{ ratsighting.address }}</a></td>
+                    <td>{{ ratsighting.borough }}</td>
+                    <td>{{ ratsighting.city }}</td>
+                    <td>{{ ratsighting.zip_code }}</td>
+                    <td><a href="{% url 'named-profile' ratsighting.owner.username %}">{{ ratsighting.owner.get_full_name|default:ratsighting.owner.username }}</a></td>
+                    <td>{{ ratsighting.date_created }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+            {% if page_obj.has_previous %}
+                <div class="btn-group" role="group">
+                    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-default"><< Previous</a>
+                </div>
+            {% endif %}
+
+            <div class="btn-group" role="group">
+                <a class="btn btn-default disabled">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a>
+            </div>
+
+            {% if page_obj.has_next %}
+                <div class="btn-group" role="group">
+                    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-default">Next >></a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

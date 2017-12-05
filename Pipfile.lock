@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ed8ea8e5d411fb46ddd31484f3cf8806dda10a0ad4a272b79e55f3fa835dcad2"
+            "sha256": "d5e55f47a0b6948ac9bb9cbd2f3ad209f9f6fd16ffa58a2c2ea8961d69ef3b2d"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -30,10 +30,24 @@
     "default": {
         "django": {
             "hashes": [
-                "sha256:75ce405d60f092f6adf904058d023eeea0e6d380f8d9c36134bac73da736023d",
-                "sha256:8918e392530d8fc6965a56af6504229e7924c27265893f3949aa0529cd1d4b99"
+                "sha256:af18618ce3291be5092893d8522fe3919661bf3a1fb60e3858ae74865a4f07c2",
+                "sha256:9614851d4a7ff8cbd32b73c6076441f377c45a5bbff7e771798fb02c43c31f47"
             ],
-            "version": "==1.11.7"
+            "version": "==2.0"
+        },
+        "django-appconf": {
+            "hashes": [
+                "sha256:ddab987d14b26731352c01ee69c090a4ebfc9141ed223bef039d79587f22acd9",
+                "sha256:6a4d9aea683b4c224d97ab8ee11ad2d29a37072c0c6c509896dd9857466fb261"
+            ],
+            "version": "==1.0.2"
+        },
+        "django-crispy-forms": {
+            "hashes": [
+                "sha256:d37fe72eb550b41ba651c06293fb861d5a9e6e3ada23304718858cd6250d258d",
+                "sha256:b29a9a671194e3a482891f319f69da81e30ae81c075f6e37adb14a83ba2c409b"
+            ],
+            "version": "==1.7.0"
         },
         "django-filter": {
             "hashes": [
@@ -51,17 +65,17 @@
         },
         "djangorestframework": {
             "hashes": [
-                "sha256:cd7f0f678d63e2be561834ff2049eef6d9fd6fb85c63bea7e94597b36c015bf4",
-                "sha256:305b2c6564ca46d3b558ba21110ed717135c467adf1a6dfd192bd85f4bb04d50"
+                "sha256:79268055755125caaebface3acbe13150bbc3a83b78e9bf1a1abfde7ab0c5231",
+                "sha256:067960e5e9e5586d3b2d53a1d626c4800dc33cd8309487d404fc63355674556f"
             ],
-            "version": "==3.7.1"
+            "version": "==3.7.3"
         },
         "djoser": {
             "hashes": [
-                "sha256:ddd2ce537fc078213d1b520159698099522f700d092e2f9865b176ea06b71c5b",
-                "sha256:e2986b268aa7005d1a45c33e563185932579a8c65d32b34c617754933bda8441"
+                "sha256:704bdc38cc04057c04b832374dc2b6c56e1084c6bae1604ab24d0286a9f68364",
+                "sha256:344d178771b9a2d6d0aae4445352d288670b57818271e816d8474a63418472d4"
             ],
-            "version": "==1.1.1"
+            "version": "==1.1.4"
         },
         "gunicorn": {
             "hashes": [

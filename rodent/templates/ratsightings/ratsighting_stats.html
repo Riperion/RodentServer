@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block header %}Statistics{% endblock %}
+
+{% block content %}
+    <h3 class="text-center">Rat Sighting Statistics</h3>
+
+    <div class="row">
+        <div id="plot" class="col-sm-12 col-md-6" style="overflow: hidden;"></div>
+        <div id="map" class="col-sm-12 col-md-6" style="height: 50vh;"></div>
+    </div>
+
+    <hr>
+
+    <script>
+      function initMap() {
+        var locations = [
+            {% for ratsighting in object_list %}
+                {lat: {{ ratsighting.latitude }}, lng: {{ ratsighting.longitude }}},
+            {% endfor %}
+        ];
+
+        var bounds = new google.maps.LatLngBounds();
+        locations.forEach(function(location) {
+            var point = new google.maps.LatLng(location.lat, location.lng);
+            bounds.extend(point);
+        });
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+            center: {lat: 40.78, lng: -73.97}
+        });
+
+        map.fitBounds(bounds);
+
+        locations.forEach(function(location) {
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_N-nqWenyCbi0Zfw4HrvKfrHOlld_WV0&callback=initMap">
+    </script>
+
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+
+<script>
+
+var margin = {top: 20, right: 20, bottom: 70, left: 80},
+    width = 600 - margin.left - margin.right,
+    height = 300 - margin.top - margin.bottom;
+
+// Parse the date / time
+var	parseDate = d3.time.format("%Y-%m").parse;
+
+var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
+
+var y = d3.scale.linear().range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom")
+    .tickFormat(d3.time.format("%Y-%m"));
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .ticks(10);
+
+var svg = d3.select("#plot").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+    var data = [
+            {% for point in histogram %}
+                {date: parseDate("{{ point.month|date:"Y-m" }}"), value:{{ point.count }}},
+            {% endfor %}
+    ];
+
+  x.domain(data.map(function(d) { return d.date; }));
+  y.domain([0, d3.max(data, function(d) { return d.value; })]);
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis)
+    .selectAll("text")
+      .style("text-anchor", "end")
+      .attr("dx", "-1.5em")
+      .attr("dy", "-.55em")
+      .attr("transform", "rotate(-90)" )
+          .attr("font-size", "6px");
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Report Count");
+
+  svg.selectAll("bar")
+      .data(data)
+    .enter().append("rect")
+      .style("fill", "steelblue")
+      .attr("x", function(d) { return x(d.date); })
+      .attr("width", x.rangeBand())
+      .attr("y", function(d) { return y(d.value); })
+      .attr("height", function(d) { return height - y(d.value); });
+</script>
+
+</body>
+{% endblock %}

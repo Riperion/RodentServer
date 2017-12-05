@@ -1,6 +1,8 @@
 [[source]]
+
 url = "https://pypi.python.org/simple"
 verify_ssl = true
+
 
 [packages]
 
@@ -9,9 +11,13 @@ gunicorn = "*"
 whitenoise = "*"
 djangorestframework = "*"
 markdown = "*"
-"django-filter" = "*"
+django-filter = "*"
 djoser = "*"
-"json-logging-py" = "*"
+json-logging-py = "*"
+django-crispy-forms = "*"
+django-appconf = "*"
+
 
 [requires]
+
 python_version = "3.6"

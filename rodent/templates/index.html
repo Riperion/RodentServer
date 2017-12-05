@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block header %}Welcome{% endblock %}
+
+{% block content %}
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Welcome to Rodent!</h1>
+        <p>Rodent is a rat sighting tracking suite for use by citizens and governments - citizens report any rat sightings,
+            and governments use this data in order to better coordinate extermination efforts. Rodent is available for
+            public access, all you need to do is register, and you can start reporting those pesky rats!</p>
+        <p><a class="btn btn-primary btn-lg" href="{% url 'ratsighting-list' %}" role="button">Get started now &raquo;</a></p>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Easy to Use</h2>
+          <p>Rodent is surprisingly easy to use - it features just three major interfaces. You can add and list Rat Sightings easily, and it's very simple to look up statistics based on date.</p>
+        </div>
+        <div class="col-md-4">
+          <h2>Multi-platform</h2>
+          <p>Rodent is available not only on the web, but as an iPhone and Android app too! As a result, it's easier than ever to report those little creatures.</p>
+       </div>
+        <div class="col-md-4">
+          <h2>Well-maintained</h2>
+          <p>This is a major lie. We have absolutely no intention of ever touching this codebase again once we're done with GT CS2340 Fall 2017.</p>
+        </div>
+      </div>
+    </div>
+{% endblock %}
